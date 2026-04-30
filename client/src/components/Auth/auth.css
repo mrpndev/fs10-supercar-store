@@ -1,0 +1,16 @@
+.auth-component {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	max-width: var(--max-width);
+
+	& input {
+		border: none;
+		padding: var(--std-padding);
+		border-radius: 5px;
+		min-width: var(--max-width-btn);
+	}
+}
+

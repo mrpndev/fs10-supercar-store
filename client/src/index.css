@@ -1,0 +1,35 @@
+:root {
+	--max-width: 500px;
+	--max-width-btn: calc(var(--max-width) / 2);
+	--background-color: #e6e4dc;
+	--primary-color: #6b9ed0;
+	--secondary-color: #b0d8e2;
+	--tertiary-color: #d54953;
+	--tertiary-color-click: #ad2e36;
+	--std-padding: 10px;
+
+	background-color: var(--background-color);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.primary-btn {
+	border: none;
+	padding: var(--std-padding);
+	min-width: var(--max-width-btn);
+	max-width: var(--max-width-btn);
+	background-color: var(--tertiary-color);
+	color: var(--background-color);
+
+	&:hover {
+		background-color: var(--tertiary-color-click);
+		cursor: pointer;
+	}
+}
