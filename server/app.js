@@ -12,6 +12,8 @@ const routes = require("./routes/routes");
 const sessionValidation = require("./middlewares/validate")
 // import our sequelize database config
 const { db } = require("./db");
+require("./models/auth");
+require("./models/cars");
 
 app.use(cors())
 app.use(express.json());
@@ -19,18 +21,23 @@ app.use(express.urlencoded({ extended: true }))
 app.use(auth);
 app.use("/api", sessionValidation, routes);
 
-app.listen(PORT, HOST, async () => {
+async function startServer() {
 	try {
-		// establish connection to an existing database
+		// Ensure models are registered and tables exist before serving requests.
 		await db.authenticate();
-		// syncs all of our schemas to the database
-		await db.sync({ force: false })
-		console.log(`[server] listening on ${HOST}:${PORT}`);
-		console.log(`[database] running`);
+		await db.sync({ force: false });
+
+		app.listen(PORT, HOST, () => {
+			console.log(`[server] listening on ${HOST}:${PORT}`);
+			console.log(`[database] running`);
+		});
 	} catch (err) {
 		console.error(err);
+		process.exit(1);
 	}
-});
+}
+
+startServer();
 
 /* 
 	? Object Relational Mapper (ORM)

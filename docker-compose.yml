@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:17
+    container_name: pern_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dbLocal
+      POSTGRES_DB: supercarstore
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  server:
+    build: ./server
+    container_name: pern_server
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4000
+    depends_on:
+      - db
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+  client:
+    build: ./client
+    container_name: pern_client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
