@@ -8,3 +8,5 @@ const db = new Sequelize(process.env.DB_URL, {
 
 // export for use in other areas of the project
 module.exports = { db, Sequelize, DataTypes }
+
+// Ensure db actually exists

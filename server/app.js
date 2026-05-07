@@ -37,6 +37,9 @@ async function startServer() {
 	}
 }
 
+// Ensure we have successfully authenticated the database
+// Ensure we started the server
+
 startServer();
 
 /* 
