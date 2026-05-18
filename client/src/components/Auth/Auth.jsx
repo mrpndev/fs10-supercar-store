@@ -25,8 +25,8 @@ export default function Auth({ updateSessionToken }) {
 		// e.preventDefault()
 
 		const url = register
-			? "http://127.0.0.1:4000/register"
-			: "http://127.0.0.1:4000/login"
+			? "http://127.0.0.1:4000/api/register"
+			: "http://127.0.0.1:4000/api/login"
 		
 		const body = register
 			? { fullName, email, password }

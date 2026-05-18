@@ -18,7 +18,7 @@ require("./models/cars");
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-app.use(auth);
+app.use("/api", auth);
 app.use("/api", sessionValidation, routes);
 
 async function startServer() {
